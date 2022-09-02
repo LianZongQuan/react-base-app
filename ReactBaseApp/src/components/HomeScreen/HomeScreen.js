@@ -30,7 +30,6 @@ const HomeScreen = () => {
           <Actionsheet.Item>Share</Actionsheet.Item>
           <Actionsheet.Item>Play</Actionsheet.Item>
           <Actionsheet.Item>Favourite</Actionsheet.Item>
-          <Actionsheet.Item>Cancel</Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
     </Center>;
