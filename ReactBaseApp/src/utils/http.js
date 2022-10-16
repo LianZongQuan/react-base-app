@@ -17,6 +17,7 @@ class HttpUtil {
    *  params:参数
    *  callback:回调函数
   */
+    
     static get(url,params,header,callback){
 
       var axios = require('axios');
@@ -43,7 +44,6 @@ class HttpUtil {
         console.log(error);
       });
     }
- 
  
  
   /*

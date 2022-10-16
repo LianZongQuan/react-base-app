@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Pressable,
-  Link,Text,HStack,Center,Heading,Switch,useColorMode,NativeBaseProvider,VStack,Box,Button,AspectRatio,Image,Stagger,Stack,FormControl,isOpen,Select,CheckIcon,
-  children,Actionsheet,WarningOutlineIcon,AlertDialog,Icon,ScrollView,Ionicons,Flex,Radio,Spacer,Input,AddIcon,Divider,Checkbox,sidebarItems,View, Container
+import {
+  Text,Center,Box,Button,Image,Stack,Pressable,useToast,VStack, HStack,
+  Icon,Input,View, Container,IconButton,CloseIcon,Alert
 } from 'native-base';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -11,7 +11,10 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Validate, { isvalidatemobile ,validatenull} from '../../utils/validate'
 import HttpUtil from '../../utils/http';
+// import Widgets from '../../utils/widgets';
 
 const Register = ({navigation}) => {
   //控制密码是否显示
@@ -22,9 +25,46 @@ const Register = ({navigation}) => {
   const [password,setpassword] = React.useState(''); 
   //电话
   const [phone,setphone] = React.useState('');
+  //提示
+  const toast = useToast();
+
+  //提示组件（提示error 或者 success）
+  const ToastAlert = ({
+    status,
+    description,
+  }) =>
+  <Alert w="100%" status={status}>
+    <VStack space={2} flexShrink={1} w="100%">
+      <HStack flexShrink={1} space={2} justifyContent="space-between">
+        <HStack space={2} flexShrink={1}>
+          <Alert.Icon mt="1" />
+          <Text fontSize="md" color="coolGray.800">
+          {description}
+          </Text>
+        </HStack>
+      </HStack>
+    </VStack>
+  </Alert>;
+
+  /**
+   * 弹出框
+   * @param {*} s
+   */
+  function showToast(status,description,position){
+    
+    // showErrorToast('error','sss','top')
+
+    // toast.show({
+    //   placement: "bottom",
+    //   render: ({
+    //   }) => {
+    //     return <ToastAlert description={'zhanghao cuowu '} status={'error'}/>;
+    //   }
+    // })
+  }
+
 
   //注册
-
   function registerUser(){
     let that = this;
     var axios = require('axios');
@@ -37,13 +77,20 @@ const Register = ({navigation}) => {
     console.log(data);
     let url = HttpUtil.localUrl+'admin/register/user'
     let header = {};
-    HttpUtil.post(url,data,header,function(response){
-      if(response.status === 200){
-        navigation.navigate('登录')
-      }
-      // console.log(response);
-    })
+    let list = isvalidatemobile(phone);
+    console.log(list[1]);
+
+
+
+    // HttpUtil.post(url,data,header,function(response){
+    //   if(response.status === 200){
+    //     navigation.navigate('登录')
+    //   }
+    //   // console.log(response);
+    // })
   }
+
+
 
   return(
     <Box  style = {styles.container}>
@@ -81,7 +128,7 @@ const Register = ({navigation}) => {
       </Center>
       <Center style = {{marginTop:"3%"}}>
         <Stack  alignItems={'center'} w={'full'} >
-          <Button onPress={registerUser}  _text={{fontSize:24} } mt={'10'} variant="outline" style={{ fontSize:'100', width:"80%", height:60 ,alignItems:'center'}}>
+          <Button onPress={showToast}  _text={{fontSize:24} } mt={'10'} variant="outline" style={{ fontSize:'100', width:"80%", height:60 ,alignItems:'center'}}>
             注册
           </Button>
         </Stack>

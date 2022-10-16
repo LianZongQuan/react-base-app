@@ -1,35 +1,74 @@
 import React, { Component } from 'react';
-import {Pressable,
-  Link,Text,HStack,Center,Heading,Switch,useColorMode,NativeBaseProvider,VStack,Box,Button,AspectRatio,Image,Stagger,Stack,FormControl,isOpen,Select,CheckIcon,
-  children,Actionsheet,WarningOutlineIcon,AlertDialog,Icon,ScrollView,Ionicons,Flex,Radio,Spacer,Input,AddIcon,Divider,Checkbox,sidebarItems,View, Container, IconButton
+import {
+   Avatar,HStack,Center,Box,Button,Image
+  ,Icon,Flex,Input,View, Container,
 } from 'native-base';
-import { MaterialCommunityIcons, MaterialIcons } from 'react-native-vector-icons'
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Swiper from 'react-native-swiper';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useDisclose } from 'native-base';
+import { Text } from 'react-native';
 import HttpUtil from '../../utils/http';
-import { TouchableOpacity, _ScrollView } from 'react-native';
-import { Progress } from 'native-base';
 
-const HomeScreen = ({navigation}) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState(1);
-  const onClose = () => setIsOpen(false);
+const Optional = ({navigation}) => {
 
-  const cancelRef = React.useRef(null);
   return(
-    <Box bg="white" h={'1/5'} safeAreaBottom width="100%" maxW="300px" mb={'0'} >
-        {/* <Center flex={1}></Center> */}
-        <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
-            <TouchableOpacity>
-            </TouchableOpacity>
-        </HStack>
-      </Box>
+    
+     <View style={{ flex: 1 }}>
+            <Swiper style={styles.wrapper} showsButtons={true}
+              loadMinimal
+              loadMinimalSize={1}
+              height={200}
+      
+      >
+        <View style={styles.slide1}>
+          <Text style={styles.text}>Hello Swiper</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Beautiful</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>And simple</Text>
+        </View>
+      </Swiper>
+      </View>
+
+  
   ) 
    
 
   
 
 }
-export default HomeScreen;
+export default Optional;
+const styles = StyleSheet.create({
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: '#9DD6EB'
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5'
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9'
+  },
+  text: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+
+  
+})

@@ -5,6 +5,8 @@ import {Pressable,
 } from 'native-base';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -169,13 +171,14 @@ const Login = ({navigation}) => {
   }
   //跳转到注册页面
   function jumpRegister(){
-    navigation.navigate('注册')
-  }
+      navigation.navigate('注册')``````````````````````````````````````````
+    }``````````````````````````````````````````
   return(
     <Box  style = {styles.container}>
       <Center mt={"1/6"}>
-        <Image  w={'32'} h={'32'} alt='登录图标' source={require('./images/login_icon.png') }>
-        </Image>
+        {/* <Image  w={'32'} h={'32'} alt='登录图标' source={require('./images/login_icon.png') }>
+        </Image> */}
+         <Icon as={<FontAwesome5 name="user-circle" />} size={24}  color="muted.400" />
       </Center >
 
       <Center style = {{marginTop:"10%"}} >

@@ -19,33 +19,8 @@ import Login from './src/components/login/Login';
 import Register from './src/components/register/Register'
 import User from './src/components/user/User';
 import Optional from './src/components/optional/Optional'
+import Test from './src/utils/Test'
 
-
-
-function Demo({ navigation }) {
-  return (
-    <View
-      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button title='跳转' onPress={() => {
-        navigation.navigate({
-          name: 'Settings'
-        })
-      }} />
-    </View>
-  );
-}
-function Demo1({ navigation }) {
-  return (
-    <View
-      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button title='跳转' onPress={() => {
-        navigation.navigate({
-          name: 'Home'
-        })
-      }} />
-    </View>
-  );
-}
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -54,7 +29,7 @@ function App() {
     <Provider store={store} >
       <NativeBaseProvider >
       <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ fullScreenGestureEnabled: true, contentStyle: { backgroundColor: 'red' } }}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{ fullScreenGestureEnabled: true, contentStyle: { backgroundColor: '#ffffff' } }}>
         <Stack.Screen name="Home" 
           options={{
             header: ({ navigation }) => { },
@@ -62,7 +37,7 @@ function App() {
         }}>
           {() => (
             <Tab.Navigator
-              initialRouteName="我的"
+              initialRouteName="首页"
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
@@ -102,6 +77,7 @@ function App() {
         </Stack.Screen>
         <Stack.Screen name="登录" component={Login} />
         <Stack.Screen name="注册" component={Register} />
+        <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
       </NativeBaseProvider>
