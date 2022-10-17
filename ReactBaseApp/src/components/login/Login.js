@@ -171,8 +171,8 @@ const Login = ({navigation}) => {
   }
   //跳转到注册页面
   function jumpRegister(){
-      navigation.navigate('注册')``````````````````````````````````````````
-    }``````````````````````````````````````````
+      navigation.navigate('注册')
+    }
   return(
     <Box  style = {styles.container}>
       <Center mt={"1/6"}>

@@ -23,7 +23,8 @@ const User = ({navigation}) => {
   });
 
   function jumpLogin(){
-    navigation.navigate('登录')
+    navigation.navigate('登录');
+  
   }
   
   async function getUser(){
