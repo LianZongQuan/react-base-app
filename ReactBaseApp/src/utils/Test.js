@@ -20,16 +20,6 @@ const Test = ({navigation}) => {
           fontSize: '30',
           position: 'center'
         },
-        // emphasis: {
-        //   label: {
-        //     show: false,
-        //     fontSize: '40',
-        //     fontWeight: 'bold'
-        //   }
-        // },
-        // labelLine: {
-        //   show: true
-        // },
         data: [
           
           { value: 1048, name: '98',

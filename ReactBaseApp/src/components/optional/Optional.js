@@ -3,13 +3,15 @@ import {
    Avatar,HStack,Center,Box,Button,Image
   ,Icon,Flex,Input,View, Container,
 } from 'native-base';
-import { ScrollView, StyleSheet, TouchableOpacity,Dimensions } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity,Dimensions,FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Swiper from 'react-native-swiper';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
+import RNEChartsPro from "react-native-echarts-pro";
+import WebView from "react-native-webview";
 
 
 import { Text,useColorScheme } from 'react-native';
@@ -23,6 +25,70 @@ const Optional = ({navigation}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [item,setItem] = useState(null);
 
+  const pieOption = {
+    
+    series: [
+      {
+        width:75,
+        height:75,
+        silent:'ture',
+        name: 'Access From',
+        animation:false,
+        type: 'pie',
+        radius: ['55%', '70%'],
+        // avoidLabelOverlap: false,
+        label: {
+          show: true,
+          fontSize: '30',
+          position: 'center'
+        },
+        data: [
+          
+          { value: 1048, name: '98',
+            itemStyle:{
+              color :'#000000' 
+            }
+          },
+          { value: 735, name: '' },
+        ]
+      }
+    ]
+  };
+  const Item = () => (
+    <TouchableOpacity  style={{width:screenWidth*0.245,height:75,borderBottomWidth:0.5,justifyContent:'center'}}>
+    <RNEChartsPro height={75}   option={pieOption} />
+  </TouchableOpacity>
+  );
+  const DATA = [
+    {
+      id: "1",
+      title: "First Item",
+    },
+    {
+      id: "2",
+      title: "Second Item",
+    },
+    {
+      id: "3",
+      title: "Third Item",
+    },
+    {
+      id: "4",
+      title: "Second Item",
+    },
+    {
+      id: "5",
+      title: "Third Item",
+    },
+    {
+      id: "6",
+      title: "Second Item",
+    },
+    {
+      id: "7",
+      title: "Third Item",
+    },
+  ];
   const _onChange = (event) => {
     setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
   };
@@ -76,12 +142,12 @@ const Optional = ({navigation}) => {
 
       <HStack style={{width:'98%',height:'50%',alignItems:'center',backgroundColor:'#ffffff'}}>
         <ScrollView stickyHeaderIndices={[0]} >
-          <HStack style={{}}>
-            <View style={{width:'25%',justifyContent:'center', alignItems:'center',height:36}}>
+          <HStack>
+            <View style={{width:'25%',backgroundColor:'#f5f5f5',justifyContent:'center', alignItems:'center',height:36}}>
               <Text style={{color:'#BEBEBE',fontSize:20}}>名称</Text>
             </View>
             <ScrollView 
-              style={{width:'75%',borderWidth:1}}
+              style={{width:'75%'}}
               scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
@@ -90,65 +156,105 @@ const Optional = ({navigation}) => {
                 setItem(ref)
               }}
               horizontal={true}>
-            <View style={{height:36,borderWidth:1, justifyContent:'center'}}>
-                <Text style={{width:screenWidth*0.245,textAlign:'center', fontSize:20}}>HELLo</Text>
-
-
+            <View style={{height:36,flexDirection:'row',backgroundColor:'#f5f5f5', justifyContent:'center'}}>
+                <Text style={{color:'#BEBEBE',width:screenWidth*0.245,textAlign:'left', fontSize:20}}>2023一季报</Text>
+                <Text style={{color:'#BEBEBE',width:screenWidth*0.245,textAlign:'left', fontSize:20}}>2022三季报</Text>
+                <Text style={{color:'#BEBEBE',width:screenWidth*0.245,textAlign:'left', fontSize:20}}>2022一季报</Text>
+                <Text style={{color:'#BEBEBE',width:screenWidth*0.245,textAlign:'left', fontSize:20}}>2022年报</Text>
               </View>
-
             </ScrollView>
           </HStack>
           <HStack>
 
-          <ScrollView style={{width:'25%',height:'100%',borderWidth:1}}>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
+          <ScrollView style={{width:'25%',height:'100%'}}>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
+            <View style={{marginLeft:10,height:75,borderBottomWidth:0.5}}>
+              <Text style={{fontSize:26,marginTop:10}}>东方财富</Text>
+              <HStack>
+                <Text style={{fontSize:18,backgroundColor:'#347CAF',color:"#ffffff"}}>SH</Text>
+                <Text style={{marginLeft:10,fontSize:18,color:'rgba(149, 29, 29, 0.62)'}}>300059</Text>
+              </HStack>
+            </View>
 
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
+
 
           </ScrollView>
-          <ScrollView  style={{width:'75%',height:'100%',borderWidth:1}}
+          <ScrollView  style={{width:'75%',height:'100%'}}
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            onScroll={ListScroll}
+            horizontal={true}>
+            <View  style={{width:screenWidth*0.245}}>
+              <FlatList
+                renderItem={Item}
+              data={ DATA}>
+              </FlatList>
+            </View>
+            <View  style={{width:screenWidth*0.245}}>
+              <FlatList
+                renderItem={Item}
+              data={ DATA}>
+              </FlatList>
+            </View>
+            <View  style={{width:screenWidth*0.245}}>
+              <FlatList
+                renderItem={Item}
+              data={ DATA}>
+              </FlatList>
+            </View>
+            <View  style={{width:screenWidth*0.245}}>
+              <FlatList
+                renderItem={Item}
+              data={ DATA}>
+              </FlatList>
+            </View>
 
-              // scrollEnabled={false}
+          
 
-              scrollEventThrottle={16}
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              bounces={false}
-              onScroll={ListScroll}
-          horizontal={true}>
-            <View>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            </View>
-            <View>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            </View>
-            <View>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            <Text style={{fontSize:40}}>HELLo</Text>
-            </View>
+
           </ScrollView>
           </HStack>
 

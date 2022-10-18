@@ -37,7 +37,7 @@ function App() {
         }}>
           {() => (
             <Tab.Navigator
-              initialRouteName="首页"
+              initialRouteName="自选"
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
