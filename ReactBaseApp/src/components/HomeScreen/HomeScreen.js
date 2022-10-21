@@ -18,9 +18,9 @@ const HomeScreen = ({navigation}) => {
   const screenHeight = Dimensions.get('window').height;
   return(
     <View style = {styles.background}>
-        <Image  style={{borderWidth:1,width:400,height:100,marginTop:'6%'}}  source={require('./images/head_icon.png')}></Image>
-      <Input placeholder="请输入股票代码或者公司名称"height={"8%"} width="90%" borderRadius="24" mt={'10'} py="3" px="1" fontSize="22" 
-        InputLeftElement={<Icon m="2" ml="3" size="10" color="gray.400" as={<MaterialIcons name="search" />} />}>
+      <Image  style={{borderWidth:1,width:screenWidth*0.8,height:screenHeight*0.1,marginTop:'10%'}}  source={require('./images/head_icon.png')}></Image>
+      <Input placeholder="请输入股票代码或者公司名称"height={screenHeight*0.08} width={screenWidth*0.9} borderRadius="24" mt={'6'} py="3" px="1" fontSize={screenWidth*0.04} 
+        InputLeftElement={<Icon m="2" ml="3" size={screenWidth*0.07} color="gray.400" as={<MaterialIcons name="search" />} />}>
       </Input>
       <ScrollView  horizontal={false}>
       <Swiper style={styles.wrapper}

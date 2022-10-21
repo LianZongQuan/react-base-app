@@ -4,7 +4,7 @@ import {
    AspectRatio, Image,  FormControl, Select, CheckIcon, WarningOutlineIcon, ScrollView,
   Flex, Spacer
 } from 'native-base';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View ,Dimensions} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -19,12 +19,18 @@ import Login from './src/components/login/Login';
 import Register from './src/components/register/Register'
 import User from './src/components/user/User';
 import Optional from './src/components/optional/Optional'
+import UserInfo from './src/components/user/userInfo/UserInfo'
+import Wallet from './src/components/user/Wallet'
+import OrderInfo from './src/components/user/OrderInfo'
+import FeedBack from './src/components/user/FeedBack'
 import Test from './src/utils/Test'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function App() {
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
   return (
     <Provider store={store} >
       <NativeBaseProvider >
@@ -41,7 +47,7 @@ function App() {
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
-                  size = 34;
+                  size = screenWidth*0.07;
                   if (route.name === '首页') {
                     iconName = focused
                       ? 'home'
@@ -57,11 +63,12 @@ function App() {
                 },
                 //标签属性
                 tabBarLabelStyle: {
-                  fontSize: 20,
+                  fontSize: screenWidth*0.05,
                 },
                 //导航栏属性
                 tabBarStyle:{
-                  height:70,
+                  paddingTop:5,
+                  height:screenWidth*0.16,
                 },
                 //选中颜色
                 tabBarActiveTintColor: '#4095E5',
@@ -77,6 +84,11 @@ function App() {
         </Stack.Screen>
         <Stack.Screen name="登录" component={Login} />
         <Stack.Screen name="注册" component={Register} />
+        <Stack.Screen name="个人信息" component={UserInfo} />
+        <Stack.Screen name="钱包" component={Wallet} />
+        <Stack.Screen name="订单信息" component={OrderInfo} />
+        <Stack.Screen name="意见反馈" component={FeedBack} />
+
         <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
