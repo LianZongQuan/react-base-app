@@ -14,7 +14,22 @@ import { Text } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+
 const UserInfo = ({navigation}) => {
+
+  function jumpModifyNickname(){
+    navigation.navigate('修改昵称');
+  }
+  function jumpUserProfile(){
+    navigation.navigate('个人简介');
+  }
+  function jumpModifyPhone(){
+    navigation.navigate('修改手机号');
+  }
+  function jumpModifyPassword(){
+    navigation.navigate('修改密码');
+  }
+
 
   return(
     <View style = {styles.background}>
@@ -27,7 +42,7 @@ const UserInfo = ({navigation}) => {
         <Text style={{fontSize:screenWidth*0.06}}>点击更换头像</Text>
       </View>
       <View style = {styles.content}>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity onPress={jumpModifyNickname} style={styles.list}>
           <HStack style = {{width:"94%"}}>
             <Text style = {{fontSize:screenWidth*0.055,width:'30%',marginLeft:10}}>昵称</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>
@@ -38,7 +53,7 @@ const UserInfo = ({navigation}) => {
             </View>
           </HStack>     
         </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity onPress={jumpUserProfile} style={styles.list} >
           <HStack style = {{width:"94%"}}>
             <Text style = {{fontSize:screenWidth*0.055, width:'30%',marginLeft:10}}>个人简介</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>
@@ -49,7 +64,7 @@ const UserInfo = ({navigation}) => {
             </View>
           </HStack>     
         </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity onPress={jumpModifyPhone} style={styles.list}>
           <HStack style = {{width:"94%"}}>
             <Text style = {{fontSize:screenWidth*0.055, width:'30%',marginLeft:10}}>手机号</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>
@@ -60,7 +75,7 @@ const UserInfo = ({navigation}) => {
             </View>
           </HStack>     
         </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity onPress={jumpModifyPassword} style={styles.list}>
           <HStack style = {{width:"94%"}}>
             <Text style = {{fontSize:screenWidth*0.055, width:'30%',marginLeft:10}}>修改密码</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>

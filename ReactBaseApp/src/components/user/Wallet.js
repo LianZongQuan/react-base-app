@@ -16,7 +16,38 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const Wallet = ({navigation}) => {
+  const [selectedIndex,setSelectedIndex] = React.useState(1);
 
+  React.useEffect(() => {
+    setSelectedIndex(1);
+  },[]);
+  function select1(){
+    setSelectedIndex(1)
+  }  
+  function select2(){
+    setSelectedIndex(2)
+  }  
+  function select3(){
+    setSelectedIndex(3)
+  }  
+  function select4(){
+    setSelectedIndex(4)
+  }  
+  function select5(){
+    setSelectedIndex(5)
+  }  
+  function select6(){
+    setSelectedIndex(6)
+  }  
+  function select7(){
+    setSelectedIndex(7)
+  }  
+  function select8(){
+    setSelectedIndex(8)
+  }  
+  function select9(){
+    setSelectedIndex(9)
+  }
 
   return(
     <View style = {styles.background}>
@@ -41,44 +72,44 @@ const Wallet = ({navigation}) => {
       </View>
       <Text style={{fontSize:screenWidth*0.055,marginTop:10,marginLeft:20,color:"#6C6C6C",alignSelf:'flex-start'}}>充值</Text>
       <HStack space={4} style={{justifyContent:'space-between',marginTop:10}}>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,borderWidth:1,borderColor:"#FFBF6B", backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055,color:"#FFBF6B"}}>12碧湾币</Text>
+        <TouchableOpacity onPress={select1} style={selectedIndex == 1 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 1 ? "#FFBF6B":"black"}}>12碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.045,color:'#9A9A9A'}}>12.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>24碧湾币</Text>
+        <TouchableOpacity onPress={select2} style={selectedIndex == 2 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 2 ? "#FFBF6B":"black"}}>24碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>24.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>36碧湾币</Text>
+        <TouchableOpacity onPress={select3} style={selectedIndex == 3 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 3 ? "#FFBF6B":"black"}}>36碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>36.00元</Text>
         </TouchableOpacity>
       </HStack>
       <HStack space={4} style={{justifyContent:'space-between',marginTop:10}}>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>48碧湾币</Text>
+        <TouchableOpacity onPress={select4} style={selectedIndex == 4 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 4 ? "#FFBF6B":"black"}}>48碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>48.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>60碧湾币</Text>
+        <TouchableOpacity onPress={select5} style={selectedIndex == 5 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 5 ? "#FFBF6B":"black"}}>60碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>60.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>72碧湾币</Text>
+        <TouchableOpacity onPress={select6} style={selectedIndex == 6 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 6 ? "#FFBF6B":"black"}}>72碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>72.00元</Text>
         </TouchableOpacity>
       </HStack>
       <HStack space={4} style={{justifyContent:'space-between',marginTop:10}}>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>108碧湾币</Text>
+        <TouchableOpacity onPress={select7} style={selectedIndex == 7 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 7 ? "#FFBF6B":"black"}}>108碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>108.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>198碧湾币</Text>
+        <TouchableOpacity onPress={select8}  style={selectedIndex == 8 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 8 ? "#FFBF6B":"black"}}>198碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>198.00元</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:"28%",height:screenHeight*0.1,backgroundColor:'rgba(239, 239, 239, 0.79)',borderRadius:10,alignItems:'center',justifyContent:'center'}}>
-          <Text style={{fontSize:screenWidth*0.055}}>298碧湾币</Text>
+        <TouchableOpacity onPress={select9} style={selectedIndex == 9 ? styles.checkIndex:styles.select}>
+          <Text style={{fontSize:screenWidth*0.055,color:selectedIndex == 9 ? "#FFBF6B":"black"}}>298碧湾币</Text>
           <Text style={{fontSize:screenWidth*0.04,color:'#9A9A9A'}}>298.00元</Text>
         </TouchableOpacity>
       </HStack>
@@ -107,6 +138,24 @@ const styles = StyleSheet.create({
     backgroundColor:"#ffffff"
 
   },
+  checkIndex:{
+    width:"28%",
+    height:screenHeight*0.1,
+    borderWidth:1,
+    borderColor:"#FFBF6B",
+     backgroundColor:'rgba(239, 239, 239, 0.79)',
+     borderRadius:10,
+     alignItems:'center',
+     justifyContent:'center'
+  },
+  select:{
+    width:"28%",
+    height:screenHeight*0.1,
+    backgroundColor:'rgba(239, 239, 239, 0.79)',
+    borderRadius:10,alignItems:'center',
+    justifyContent:'center'
+  },
+
   content:{
     // borderWidth:1,
     height:420,

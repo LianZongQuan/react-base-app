@@ -18,11 +18,18 @@ import HomeScreen from './src/components/HomeScreen/HomeScreen';
 import Login from './src/components/login/Login';
 import Register from './src/components/register/Register'
 import User from './src/components/user/User';
+  import UserInfo from './src/components/user/userInfo/UserInfo'
+    import UserProfile from './src/components/user/userInfo/UserProfile'
+    import ModifyNickname from './src/components/user/userInfo/ModifyNickname';
+    import ModifyPassword from './src/components/user/userInfo/ModifyPassword';
+    import ModifyPhone from './src/components/user/userInfo/ModifyPhone';
 import Optional from './src/components/optional/Optional'
-import UserInfo from './src/components/user/userInfo/UserInfo'
+import AddOptional from './src/components/optional/AddOptional';
+
 import Wallet from './src/components/user/Wallet'
 import OrderInfo from './src/components/user/OrderInfo'
 import FeedBack from './src/components/user/FeedBack'
+
 import Test from './src/utils/Test'
 
 const Stack = createNativeStackNavigator();
@@ -85,9 +92,14 @@ function App() {
         <Stack.Screen name="登录" component={Login} />
         <Stack.Screen name="注册" component={Register} />
         <Stack.Screen name="个人信息" component={UserInfo} />
+        <Stack.Screen name="修改昵称" component={ModifyNickname} />
+        <Stack.Screen name="个人简介" component={UserProfile} />
+        <Stack.Screen name="修改手机号" component={ModifyPhone} />
+        <Stack.Screen name="修改密码" component={ModifyPassword} />
         <Stack.Screen name="钱包" component={Wallet} />
         <Stack.Screen name="订单信息" component={OrderInfo} />
         <Stack.Screen name="意见反馈" component={FeedBack} />
+        <Stack.Screen name="添加自选" component={AddOptional} />
 
         <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>
