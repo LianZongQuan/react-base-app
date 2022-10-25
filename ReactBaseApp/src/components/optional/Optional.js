@@ -1,9 +1,9 @@
 import React, { Component,useEffect, useState } from 'react';
 import {
    Avatar,HStack,Center,Box,Button,Image
-  ,Icon,Flex,Input,View, Container,Divider
+  ,Icon,Flex,Input,View, Container,Divider, Modal,FormControl
 } from 'native-base';
-import { ScrollView, StyleSheet, TouchableOpacity,Dimensions,FlatList ,Text,useColorScheme,Pressable} from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity,Dimensions,FlatList ,Alert,Text,useColorScheme,Pressable} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -28,6 +28,9 @@ const Optional = ({navigation}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   //总数据
   const [listData,setListData] = useState(TestData.testdata.optionData);
+  //搜索内容
+  const [inputText,setInputText] = useState('');
+
   // //自选列表名称
   // const [listNameData,setListNameData] = useState(null);
   //报告列表名称
@@ -45,19 +48,8 @@ const Optional = ({navigation}) => {
 
   //按压测试
   function onPressTest(){
+    setModalVisible(!modalVisible);
   }
-  //分段器位置改变
-  const _onChange = (event) => {
-    setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
-    setListData(TestData.testdata.optionData1);
-    // setListNameData(TestData.testdata.optionData);
-    setListReportName(TestData.testdata.optionData1[0].report);
-  };
-  //分段器值改变
-  const _onValueChange = (val) => 
-  {
-
-  };
   //同步滚动方法
   const ListScroll = (e) => {
     const x1 = e.nativeEvent.contentOffset.x;
@@ -114,13 +106,13 @@ const Optional = ({navigation}) => {
     if(type === 'SH')
       typeColor = '#F4CE98'
     return(
-      <View style={{marginLeft:10,height:screenHeight*0.09,borderBottomWidth:0.5,borderColor:"#BEBEBE"}}>
+      <TouchableOpacity onLongPress={onPressTest} style={{marginLeft:10,height:screenHeight*0.09,borderBottomWidth:0.5,borderColor:"#BEBEBE"}}>
         <Text style={{fontSize:screenWidth*0.05,marginTop:10}}>{name}</Text>
         <HStack>
           <Text  style={{fontSize:screenWidth*0.035,backgroundColor:typeColor,color:"#ffffff"}}>{type}</Text>
           <Text style={{marginLeft:10,fontSize:screenWidth*0.035,color:'rgba(149, 29, 29, 0.62)'}}>{code}</Text>
         </HStack>
-      </View>
+      </TouchableOpacity>
     )
   }
   const renderNameItem = ({item}) =>(
@@ -128,7 +120,7 @@ const Optional = ({navigation}) => {
   );
   const MainItem = ({report}) =>{
     return(
-      <View>
+      <View  >
         <HStack>
           {report.map((item, index) => {
             let circleColor = '';
@@ -226,12 +218,46 @@ const Optional = ({navigation}) => {
     setSelectedIndex(3);
   }
   function search(text){
-    
+    setInputText(text)
+    let list = TestData.testdata.optionData;
+
+    if(text===''){
+      setListData(list);
+    }else{
+      let ret =  fuzzyQuery(list,text);
+      if(ret != null){
+        setListData(ret);
+      }
+    }
   }
+  function fuzzyQuery(list, keyWord) {
+    var reg =  new RegExp(keyWord);
+    var arr = [];
+    for (var i = 0; i < list.length; i++) {
+      if (reg.test(list[i].name)) {
+        arr.push(list[i]);
+      }
+    }
+    return arr;
+  }
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+
   return(
     <View style={{ flex: 1,backgroundColor:"#f5f5f5", alignItems:'center' }}>
+      <Modal style={{alignItems:'center', width:screenWidth*0.5,alignSelf:'center'}} isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
+        <Modal.Content>
+          <Modal.Body>
+            <Button variant='ghost' colorScheme="blueGray">删除 </Button>
+            <Button variant="ghost" colorScheme="blueGray" onPress={() => {
+              setModalVisible(false)}}>取消 </Button>
+
+          </Modal.Body>
+        </Modal.Content>
+      </Modal>
       <Text style={{marginLeft:20, marginTop:10, fontSize:screenWidth*0.06,alignSelf:'flex-start'}}>自选</Text>
-      <Input  onChangeText={(text)=>search(text)} placeholder="检索"height={screenHeight*0.07} bg={"#ffffff"} width={screenWidth*0.9} borderRadius="24" mt={'3'} py="3" px="1" fontSize={screenWidth*0.04} 
+      <Input value={inputText} onChangeText={(text)=>search(text)} placeholder="检索"height={screenHeight*0.07} bg={"#ffffff"} width={screenWidth*0.9} borderRadius="24" mt={'3'} py="3" px="1" fontSize={screenWidth*0.04} 
         InputLeftElement={<Icon m="2" ml="3" size={screenWidth*0.07} color="gray.400" as={<MaterialIcons name="search" />} />}>
       </Input>
       <View style={styles.segmentContainer}>
@@ -254,14 +280,16 @@ const Optional = ({navigation}) => {
         </Flex>
 
       </View>
-      <HStack style={{width:'100%',height:screenHeight*0.65,alignItems:'center',backgroundColor:'#ffffff'}}>
+      <HStack style={{width:'100%',marginTop:1,height:screenHeight*0.65,alignItems:'center', backgroundColor:'#ffffff'}}>
         <FlatList
           ListHeaderComponent={head}
           ListFooterComponent={footer}
           listKey='1'
           renderItem={renderContainer}
           data = {[{id:'1'}]}
+          style={{alignSelf:'stretch'}}
           stickyHeaderIndices={[0]}>
+            
         </FlatList>
       </HStack>
     </View>
