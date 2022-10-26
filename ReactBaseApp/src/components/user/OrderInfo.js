@@ -250,7 +250,8 @@ const AllOrder = () =>{
 const OrderInfo = ({navigation}) => {
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator     
+    >
         <Tab.Screen name="已完成" component={CompleteOrder} />
         <Tab.Screen name="待付款" component={PayOrder} />
         <Tab.Screen name="全部" component={AllOrder} />

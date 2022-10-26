@@ -7,7 +7,7 @@ import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunity
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity,Dimensions } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -24,6 +24,8 @@ import { set } from 'immer/dist/internal';
 const MSGINIT = "发送验证码",
   MSGSCUCCESS = "${time}秒后重发",
   MSGTIME = 60;
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 const Login = ({navigation}) => {
   //控制密码是否显示
   const [show, setShow] = React.useState(false);
@@ -54,12 +56,12 @@ const Login = ({navigation}) => {
         <Input 
           type={show ? "text" : "password"}
           InputLeftElement={
-            <Icon as={<AntDesign name="lock" />} size={8} ml="2" color="muted.400" />
+            <Icon as={<AntDesign name="lock" />} size={screenWidth*0.07} ml="2" color="muted.400" />
           }
           InputRightElement={<Pressable onPress={() => setShow(!show)}>
-            <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={8} mr="2" color="muted.400" /></Pressable>
+            <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={screenWidth*0.07} mr="2" color="muted.400" /></Pressable>
           }
-          fontSize = {'2xl'} 
+          fontSize = {screenWidth*0.055} 
           variant="underlined" placeholder=" 密码" 
           onChangeText={(password)=>setpassword(password)}>
         </Input>
@@ -69,12 +71,12 @@ const Login = ({navigation}) => {
         <HStack w={'full'} alignItems={'center'}>
           <Input 
             type={"text"}
-            fontSize = {'2xl'} 
-            w={'3/4'}
+            fontSize = {screenWidth*0.055} 
+            w={screenWidth*0.6}
             
             variant="underlined" placeholder=" 验证码" >
           </Input>           
-          <Button disabled={msgKey}  onPress={handleSend} w={'1/4'} size={'lg'}>
+          <Button disabled={msgKey}  onPress={handleSend} w={screenWidth*0.33} size={screenWidth*0.12}>
             { msgText }
           </Button>
         </HStack>
@@ -185,32 +187,21 @@ const Login = ({navigation}) => {
         <Stack space={4} w="90%" maxW="450px" mx="auto">
           <Input  
             InputLeftElement={
-              <Icon as={<MaterialIcons name="person" />} size={8} ml="2" color="muted.400" />
+              <Icon as={<MaterialIcons name="person" />} size={screenWidth*0.07} ml="2" color="muted.400" />
             }
-            fontSize = {'2xl'}
+            fontSize = {screenWidth*0.055}
             onChangeText={(userName)=>setusername(userName)} 
             variant="underlined" placeholder={passwordLogin?'账号':'手机号'}>
           </Input>
-          {/* <Input 
-            type={show ? "text" : "password"}
-            InputLeftElement={
-              <Icon as={<MaterialCommunityIcons name="onepassword" />} size={8} ml="2" color="muted.400" />
-            }
-            InputRightElement={<Pressable onPress={() => setShow(!show)}>
-              <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={8} mr="2" color="muted.400" /></Pressable>
-            }
-            fontSize = {'2xl'} 
-            variant="underlined" placeholder=" 密码" >
-          </Input> */}
           {passwordOrCode()}
           <Box alignSelf="flex-end">
             <Flex direction="row" h="58" p="4">
               <TouchableOpacity onPress={changeLoginType}>
-                <Text underline={true} color={'indigo.500'} fontSize={"lg"}>{loginMode}</Text>
+                <Text underline={true} color={'indigo.500'} fontSize={screenWidth*0.045}>{loginMode}</Text>
               </TouchableOpacity>
               <Divider bg="indigo.500" thickness="2" mx="2" orientation="vertical" />
               <TouchableOpacity>
-                <Text color={'indigo.500'} underline={true} fontSize={"lg"}>忘记密码</Text>
+                <Text color={'indigo.500'} underline={true} fontSize={screenWidth*0.045}>忘记密码</Text>
               </TouchableOpacity>
             </Flex>
          </Box> 
@@ -220,10 +211,10 @@ const Login = ({navigation}) => {
       
       <Stack  alignItems={'center'} w={'full'} >
 
-          <Button _text={{fontSize:24} } onPress={loginMode=='验证码登录'? loginByUsername:loginByCode}  style={{ width:"80%", height:60 ,alignItems:'center'}} >
+          <Button _text={{fontSize:screenWidth*0.055} } onPress={loginMode=='验证码登录'? loginByUsername:loginByCode}  style={{ width:"80%", height:screenWidth*0.15 ,alignItems:'center'}} >
             登录
           </Button>
-          <Button  _text={{fontSize:24} } mt={'10'} variant="outline"  onPress={jumpRegister} style={{ fontSize:'100', width:"80%", height:60 ,alignItems:'center'}}>
+          <Button  _text={{fontSize:screenWidth*0.055} } mt={screenHeight*0.018} variant="outline"  onPress={jumpRegister} style={{ fontSize:'100', width:"80%", height:screenWidth*0.15  ,alignItems:'center'}}>
             注册
           </Button>
         </Stack>

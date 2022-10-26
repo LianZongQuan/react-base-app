@@ -89,17 +89,17 @@ function App() {
             </Tab.Navigator>
           )}
         </Stack.Screen>
-        <Stack.Screen name="登录" component={Login} />
-        <Stack.Screen name="注册" component={Register} />
-        <Stack.Screen name="个人信息" component={UserInfo} />
-        <Stack.Screen name="修改昵称" component={ModifyNickname} />
-        <Stack.Screen name="个人简介" component={UserProfile} />
-        <Stack.Screen name="修改手机号" component={ModifyPhone} />
-        <Stack.Screen name="修改密码" component={ModifyPassword} />
-        <Stack.Screen name="钱包" component={Wallet} />
-        <Stack.Screen name="订单信息" component={OrderInfo} />
-        <Stack.Screen name="意见反馈" component={FeedBack} />
-        <Stack.Screen name="添加自选" component={AddOptional} />
+        <Stack.Screen name="登录" component={Login} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="注册" component={Register} options={{headerTitleAlign:'center'}} />
+        <Stack.Screen name="个人信息" component={UserInfo} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="修改昵称" component={ModifyNickname} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="个人简介" component={UserProfile} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="修改手机号" component={ModifyPhone} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="修改密码" component={ModifyPassword} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="钱包" component={Wallet} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="订单信息" component={OrderInfo} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="意见反馈" component={FeedBack} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="添加自选" component={AddOptional} options={{headerTitleAlign:'center'}}/>
 
         <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>

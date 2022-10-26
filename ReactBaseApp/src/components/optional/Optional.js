@@ -41,6 +41,7 @@ const Optional = ({navigation}) => {
 
   React.useEffect(() => {
     setSelectedIndex(0);
+    setInputText('');
     setListData(TestData.testdata.optionData);
     // setListNameData(TestData.testdata.optionData);
     setListReportName(TestData.testdata.optionData[0].report);
@@ -200,12 +201,14 @@ const Optional = ({navigation}) => {
     <Container ></Container>
   );
   function select0(){
+    setInputText('');
     setSelectedIndex(0);
     setListData(TestData.testdata.optionData);
     // setListNameData(TestData.testdata.optionData);
     setListReportName(TestData.testdata.optionData[0].report);
   }
   function select1(){
+    setInputText('');
     setSelectedIndex(1);
     setListData(TestData.testdata.optionData1);
     // setListNameData(TestData.testdata.optionData);
@@ -218,9 +221,11 @@ const Optional = ({navigation}) => {
     setSelectedIndex(3);
   }
   function search(text){
-    setInputText(text)
-    let list = TestData.testdata.optionData;
 
+
+    setInputText(text)
+    // let list = TestData.testdata.optionData;
+    let list = selectedIndex == 0 ? TestData.testdata.optionData : TestData.testdata.optionData1;
     if(text===''){
       setListData(list);
     }else{

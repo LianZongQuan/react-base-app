@@ -98,7 +98,6 @@ const AddOptional = ({navigation}) => {
   function search(text){
     setInputText(text)
     let list = Data.companyList;
-
     if(text===''){
       setListData(list);
     }else{
@@ -133,10 +132,6 @@ const AddOptional = ({navigation}) => {
       </HStack>
 
         {noSearch()}
-
-      
-
-
     </View>
   ) 
   
