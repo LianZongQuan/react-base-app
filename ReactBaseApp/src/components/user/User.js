@@ -40,6 +40,10 @@ const User = ({navigation}) => {
   function jumpFeedBack(){
     navigation.navigate('意见反馈');
   }
+  function jumpAboutApp(){
+    navigation.navigate('关于');
+
+  }
   async function getUser(){
     let user_info = await AsyncStorage.getItem('user_info');
     // user = user_info;
@@ -121,7 +125,7 @@ const User = ({navigation}) => {
             <Icon style ={{marginRight:20}} as={<AntDesign name="right" />} size={screenWidth*0.07} ml="2" color="muted.400" />
           </HStack>     
         </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity onPress={jumpAboutApp} style={styles.list}>
           <HStack style = {{marginLeft:"3%"}}>
             <Icon as={<AntDesign name="exclamationcircleo" />} size={screenWidth*0.07} ml="2" color="#FCCA00" />
             <Text style = {styles.listText}>关于</Text>

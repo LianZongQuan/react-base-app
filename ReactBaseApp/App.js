@@ -26,6 +26,7 @@ import User from './src/components/user/User';
 import Optional from './src/components/optional/Optional'
 import AddOptional from './src/components/optional/AddOptional';
 
+import AboutApp from './src/components/user/AboutApp';
 import Wallet from './src/components/user/Wallet'
 import OrderInfo from './src/components/user/OrderInfo'
 import FeedBack from './src/components/user/FeedBack'
@@ -100,7 +101,7 @@ function App() {
         <Stack.Screen name="订单信息" component={OrderInfo} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="意见反馈" component={FeedBack} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="添加自选" component={AddOptional} options={{headerTitleAlign:'center'}}/>
-
+        <Stack.Screen name="关于" component={AboutApp} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
