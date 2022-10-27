@@ -12,7 +12,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { Text } from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-// import HttpUtil from '../../utils/http';
+import HttpUtil from '../../utils/http'
 
 const FeedBack = ({navigation}) => {
   return(
