@@ -67,6 +67,9 @@ const Optional = ({navigation}) => {
   function jumpAddOptional(){
     navigation.navigate('添加自选');
   }
+  function jumpReport(){
+    navigation.navigate('报告');
+  }
   const head = () =>{
     return(
       <HStack>
@@ -134,7 +137,7 @@ const Optional = ({navigation}) => {
               circleColor = '#E87777';
             }
             return (
-              <Pressable key={index} delayLongPress={90}  onLongPress={onPressTest} style={{width:screenWidth*0.245,height:screenHeight*0.09,borderBottomWidth:0.5,justifyContent:'center',alignItems:'center',borderColor:"#BEBEBE"}}>
+              <Pressable key={index} delayLongPress={90}  onLongPress={jumpReport} style={{width:screenWidth*0.245,height:screenHeight*0.09,borderBottomWidth:0.5,justifyContent:'center',alignItems:'center',borderColor:"#BEBEBE"}}>
               {/* 环形图分数组件 */}
               {/* <CircleProgressView raduis={screenHeight*0.035} progressBaseColor={'#BEBEBE'} progressColor = {circleColor} baseProgressWidth={4} progressWidth={4} progress={item.score} >
                 <View style={{alignItems:'center',justifyContent:'center'}} >

@@ -25,6 +25,7 @@ import User from './src/components/user/User';
     import ModifyPhone from './src/components/user/userInfo/ModifyPhone';
 import Optional from './src/components/optional/Optional'
 import AddOptional from './src/components/optional/AddOptional';
+import Report from './src/components/optional/Report';
 
 import AboutApp from './src/components/user/AboutApp';
 import Wallet from './src/components/user/Wallet'
@@ -102,6 +103,8 @@ function App() {
         <Stack.Screen name="意见反馈" component={FeedBack} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="添加自选" component={AddOptional} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="关于" component={AboutApp} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="报告" component={Report} options={{headerShadowVisible:'false'}}/>
+        
         <Stack.Screen name="测试" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
