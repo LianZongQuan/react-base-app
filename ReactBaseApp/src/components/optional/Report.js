@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
    Avatar,HStack,Center,Box,Button,Image
-  ,Icon,Flex,Input,View, Container,Select,TextArea 
+  ,Icon,Flex,Input,View, Container,Select,TextArea, Link 
 } from 'native-base';
-import { StyleSheet, TextInput, TouchableOpacity,Dimensions } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity,Dimensions, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -20,11 +20,17 @@ import CircleProgressView from '../../utils/CircleProgressView';
 
 const Report = ({navigation}) => {
   React.useEffect(() => {
-    // WeChat.registerApp('wx99653092cabe7bf8', '').then(res => {
-    //   console.log("是否已经注册微信：" + res)
-    // })
+    WeChat.registerApp('wx99653092cabe7bf8', '').then(res => {
+      console.log("是否已经注册微信：" + res)
+    })
   },[]);
 
+  function wx(){
+    WeChat.openWXApp();
+  }
+  function download(){
+    Linking.openURL('http://192.168.10.186:8080/test.pdf')
+  }
   return(
     <View style={{height:screenHeight*1,alignItems:'center'}}>
 
@@ -42,12 +48,12 @@ const Report = ({navigation}) => {
             </View>
             </CircleProgressView>
         </View>
-        <View style={{width:screenWidth*0.15,height:screenHeight*0.1,justifyContent:'center',alignItems:'center'}}>
+        <TouchableOpacity onPress={wx} style={{width:screenWidth*0.15,height:screenHeight*0.1,justifyContent:'center',alignItems:'center'}}>
           <Icon  as={<AntDesign name="wechat" />} size={screenWidth*0.07} ml="2" color="#81B337" />
-        </View>
-        <View style={{width:screenWidth*0.15,height:screenHeight*0.1,justifyContent:'center',alignItems:'center'}}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={download} style={{width:screenWidth*0.15,height:screenHeight*0.1,justifyContent:'center',alignItems:'center'}}>
           <Icon  as={<AntDesign name="download" />} size={screenWidth*0.07} ml="2" color="#215476" />
-        </View>
+        </TouchableOpacity>
       </HStack>
       <View style={{width:screenWidth,height:screenHeight*0.9}}>
         <WebView style={{}} source={{ uri: 'http://cxlzpblog.cn/' }} />
