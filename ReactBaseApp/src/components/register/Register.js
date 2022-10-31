@@ -82,12 +82,12 @@ const Register = ({navigation}) => {
 
 
 
-    // HttpUtil.post(url,data,header,function(response){
-    //   if(response.status === 200){
-    //     navigation.navigate('登录')
-    //   }
-    //   // console.log(response);
-    // })
+    HttpUtil.post(url,data,header,function(response){
+      if(response.status === 200){
+        navigation.navigate('登录')
+      }
+      console.log(response);
+    })
   }
 
 
@@ -128,7 +128,7 @@ const Register = ({navigation}) => {
       </Center>
       <Center style = {{marginTop:"3%"}}>
         <Stack  alignItems={'center'} w={'full'} >
-          <Button onPress={showToast}  _text={{fontSize:24} } mt={'10'} variant="outline" style={{ fontSize:'100', width:"80%", height:60 ,alignItems:'center'}}>
+          <Button onPress={registerUser}  _text={{fontSize:24} } mt={'10'} variant="outline" style={{ fontSize:'100', width:"80%", height:60 ,alignItems:'center'}}>
             注册
           </Button>
         </Stack>

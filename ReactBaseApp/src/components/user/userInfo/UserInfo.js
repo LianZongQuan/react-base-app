@@ -10,13 +10,41 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { Text } from 'react-native';
+import { err } from 'react-native-svg/lib/typescript/xml';
 // import HttpUtil from '../../utils/http';
+import User from '../User.json';
+import { set } from 'immer/dist/internal';
+import { useRoute } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const UserInfo = ({navigation}) => {
+const UserInfo = ({route, navigation}) => {
+  //用户数据
+  const [user, setuser] = React.useState(null);
+  const [name,setName] = React.useState(null);
+  
+  const { id} = route.params;
+  React.useEffect(async () => {
+      let user_info =  await AsyncStorage.getItem('user_info');
+      // setuser(user_info
+      setName(JSON.parse(user_info).name)
+      // console.log()
+      console.log(id)
+  },[]);
 
+  async function getUser(){
+    try {
+      user_info = await AsyncStorage.getItem('user_info');
+    } catch (error) {
+      console.log(error)
+    }finally{
+      if(user_info != null){
+        setuser(user_info)
+      }
+    }
+
+  }
   function jumpModifyNickname(){
     navigation.navigate('修改昵称');
   }
@@ -28,6 +56,14 @@ const UserInfo = ({navigation}) => {
   }
   function jumpModifyPassword(){
     navigation.navigate('修改密码');
+  }
+  async function signOut(){
+    try {
+      await AsyncStorage.removeItem('user_info');
+    } catch (error) {
+      console.log(error)
+    }
+    navigation.navigate('我的');
   }
 
 
@@ -46,7 +82,7 @@ const UserInfo = ({navigation}) => {
             <Text style = {{fontSize:screenWidth*0.055,width:'30%',marginLeft:10}}>昵称</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>
               <HStack>
-                <Text style = {{fontSize:screenWidth*0.055}}>仟仟陌陌</Text>
+                <Text style = {{fontSize:screenWidth*0.055}}>{name}</Text>
                 <Icon style ={{marginRight:20}}  as={<AntDesign name="right" />} size={screenWidth*0.07} ml="2" />
               </HStack> 
             </View>
@@ -84,6 +120,11 @@ const UserInfo = ({navigation}) => {
               </HStack> 
             </View>
           </HStack>     
+        </TouchableOpacity>
+        <TouchableOpacity  style={styles.list}>
+          <Button onPress={signOut}  _text={{fontSize:screenWidth*0.055} }  colorScheme={'error'} style={{ borderRadius:4,marginTop:30, width:"90%", height:screenHeight*0.08,alignItems:'center'}} >
+            退出登录
+          </Button>
         </TouchableOpacity>
       </View>
     </View>

@@ -160,7 +160,7 @@ const Login = ({navigation}) => {
     });
     let url = HttpUtil.localUrl+'auth/oauth2/token?grant_type=password&scope=server';
     let header = {'Authorization':'Basic dGVzdDp0ZXN0'};
-    console.log(header);
+    console.log(data);
     HttpUtil.post(url,data,header,async function(response){
       console.log(response)
       if(response.status === 200){
@@ -219,13 +219,7 @@ const Login = ({navigation}) => {
           </Button>
         </Stack>
       </Center>
-
-
     </Box>
-
-
-
-
   )
 }
 const styles = StyleSheet.create({

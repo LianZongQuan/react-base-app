@@ -3,7 +3,7 @@ import {
    Avatar,HStack,Center,Box,Button,Image
   ,Icon,Flex,Input,View, Container,
 } from 'native-base';
-import { StyleSheet, TouchableOpacity,Dimensions } from 'react-native';
+import { StyleSheet, TouchableOpacity,Dimensions,Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -19,23 +19,43 @@ const User = ({navigation}) => {
   //用户数据
   const [user, setuser] = React.useState(null);
   
-  React.useEffect(() => {
-    focus=navigation.addListener('focus',()=>{
-      getUser();
-    })
-  });
-
+   React.useEffect(async () => {
+    // focus=navigation.addListener('focus',()=>{
+      // getUser();
+      let user_info =  await AsyncStorage.getItem('user_info');
+      setuser(user_info)
+    // })
+  },[]);
+  //未登录提示
+  function loginAlter(){
+    Alert.alert(
+      "请登录后操作",
+    );
+  }
+  
   function jumpLogin(){
     navigation.navigate('登录');
   }
   function jumpUserInfo(){
-    navigation.navigate('个人信息');
+    if(user === null){
+      loginAlter();
+    }else{
+      navigation.navigate('个人信息',{id:1});
+    }
   }
   function jumpWallet(){
-    navigation.navigate('钱包');
+    if(user === null){
+      loginAlter();
+    }else{
+      navigation.navigate('钱包');
+    }
   }
   function jumpOrderInfo(){
-    navigation.navigate('订单信息');
+    if(user === null){
+      loginAlter();
+    }else{
+      navigation.navigate('订单信息');
+    }
   }
   function jumpFeedBack(){
     navigation.navigate('意见反馈');
@@ -45,11 +65,12 @@ const User = ({navigation}) => {
 
   }
   async function getUser(){
-    let user_info = await AsyncStorage.getItem('user_info');
-    // user = user_info;
-    setuser(user_info)
-    // console.log(user);
-   
+    try {
+      let user_info = await AsyncStorage.getItem('user_info');
+      setuser(user_info)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //控制显示用户信息
@@ -71,10 +92,10 @@ const User = ({navigation}) => {
             <Avatar  style={{width:screenWidth*0.2,height:screenWidth*0.2,borderColor:"#BEBEBE",borderWidth:1}}  mr="4" >
               <Image alt='TU'style={{borderRadius:50,width:screenWidth*0.2,height:screenWidth*0.2}} source={require('./images/heard.jpg')} ></Image>
             </Avatar>
-          <TouchableOpacity onPress={jumpLogin} style={{alignItems:'flex-start'}}>
+          <View onPress={jumpLogin} style={{alignItems:'flex-start'}}>
             <Text style={{fontSize:screenWidth*0.07,color:"#6C6C6C",marginTop:15}}>{JSON.parse(user).name}</Text>
             <Text style={{fontSize:screenWidth*0.07,color:"#6C6C6C",marginTop:5}}>{JSON.parse(user).phone}</Text>
-          </TouchableOpacity>
+          </View>
         </HStack>
       )
 
@@ -133,9 +154,6 @@ const User = ({navigation}) => {
           </HStack>     
         </TouchableOpacity>
       </View>
-      <Button _text={{fontSize:24} } colorScheme='rgba(222, 134, 143, 0.75)' style={{ borderRadius:20,marginTop:"20%", width:"90%", height:60 ,alignItems:'center'}} >
-        退出登录
-      </Button>
 
 
     </View>
@@ -147,7 +165,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor:"#ffffff",
     width:"100%",
-    height:"18%",
+    height:screenHeight*0.2,
     // marginTop:'5%',
     // borderRadius:20,
     justifyContent: 'center',
@@ -159,7 +177,7 @@ const styles = StyleSheet.create({
   },
   content:{
     // borderWidth:1,
-    height:420,
+    height:screenHeight*0.8,
     width:"100%",
     marginTop:"3%",
     backgroundColor:"#ffffff"

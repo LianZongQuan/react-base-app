@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import buffer, { Buffer } from 'buffer';
 import axios from 'axios'
-// import { Console } from 'console';
 import qs from 'qs'
 
 
@@ -9,7 +8,7 @@ import qs from 'qs'
 // const remoteUrl = 'http://47.99.144.176:8086/'
 
 class HttpUtil {
-  static localUrl = 'http://192.168.10.178:9999/'
+  static localUrl = 'http://192.168.10.186:9999/'
     /*
    *  GET请求
    *  url:请求地址
