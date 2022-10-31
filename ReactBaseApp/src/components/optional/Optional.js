@@ -293,6 +293,10 @@ const Optional = ({navigation}) => {
           ListHeaderComponent={head}
           ListFooterComponent={footer}
           listKey='1'
+          onRefresh={() =>{
+            console.log("Lian")
+          } }
+          refreshing={false}
           renderItem={renderContainer}
           data = {[{id:'1'}]}
           style={{alignSelf:'stretch'}}

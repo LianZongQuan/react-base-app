@@ -34,13 +34,12 @@ const UserInfo = ({navigation}) => {
   return(
     <View style = {styles.background}>
        
-      <View style = {styles.header}>
+      <TouchableOpacity style = {styles.header}>
         <Avatar  style={{width:screenWidth*0.25,height:screenWidth*0.25,borderColor:"#BEBEBE",borderWidth:1}}  mr="4" >
           <Image alt='TU'style={{borderRadius:50,width:screenWidth*0.25,height:screenWidth*0.25}} source={require('../../user/images/heard.jpg')} ></Image>
         </Avatar>
-
         <Text style={{fontSize:screenWidth*0.06}}>点击更换头像</Text>
-      </View>
+      </TouchableOpacity>
       <View style = {styles.content}>
         <TouchableOpacity onPress={jumpModifyNickname} style={styles.list}>
           <HStack style = {{width:"94%"}}>
