@@ -20,31 +20,9 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const UserInfo = ({route, navigation}) => {
-  //用户数据
-  const [user, setuser] = React.useState(null);
-  const [name,setName] = React.useState(null);
-  
-  const { id} = route.params;
-  React.useEffect(async () => {
-      let user_info =  await AsyncStorage.getItem('user_info');
-      // setuser(user_info
-      setName(JSON.parse(user_info).name)
-      // console.log()
-      console.log(id)
-  },[]);
 
-  async function getUser(){
-    try {
-      user_info = await AsyncStorage.getItem('user_info');
-    } catch (error) {
-      console.log(error)
-    }finally{
-      if(user_info != null){
-        setuser(user_info)
-      }
-    }
+  const {name,phone} = route.params;
 
-  }
   function jumpModifyNickname(){
     navigation.navigate('修改昵称');
   }
@@ -104,7 +82,7 @@ const UserInfo = ({route, navigation}) => {
             <Text style = {{fontSize:screenWidth*0.055, width:'30%',marginLeft:10}}>手机号</Text>
             <View style={{width:'70%',alignItems:'flex-end'}}>
               <HStack>
-                <Text style = {{fontSize:screenWidth*0.055}}>1508297220</Text>
+                <Text style = {{fontSize:screenWidth*0.055}}>{phone}</Text>
                 <Icon style ={{marginRight:20}}  as={<AntDesign name="right" />} size={screenWidth*0.07} ml="2" />
               </HStack> 
             </View>

@@ -3,7 +3,7 @@ import {
    Avatar,HStack,Center,Box,Button,Image
   ,Icon,Flex,Input,View, Container,
 } from 'native-base';
-import { StyleSheet, TouchableOpacity,Dimensions,Alert } from 'react-native';
+import { StyleSheet, TouchableOpacity,Dimensions,Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -19,13 +19,11 @@ const User = ({navigation}) => {
   //用户数据
   const [user, setuser] = React.useState(null);
   
-   React.useEffect(async () => {
-    // focus=navigation.addListener('focus',()=>{
-      // getUser();
-      let user_info =  await AsyncStorage.getItem('user_info');
-      setuser(user_info)
-    // })
-  },[]);
+   React.useEffect(() => {
+    const focus=navigation.addListener('focus',()=>{
+      getUser();
+    })
+  });
   //未登录提示
   function loginAlter(){
     Alert.alert(
@@ -40,7 +38,7 @@ const User = ({navigation}) => {
     if(user === null){
       loginAlter();
     }else{
-      navigation.navigate('个人信息',{id:1});
+      navigation.navigate('个人信息',{name:JSON.parse(user).name,phone:JSON.parse(user).phone});
     }
   }
   function jumpWallet(){
@@ -62,7 +60,6 @@ const User = ({navigation}) => {
   }
   function jumpAboutApp(){
     navigation.navigate('关于');
-
   }
   async function getUser(){
     try {
@@ -71,6 +68,7 @@ const User = ({navigation}) => {
     } catch (error) {
       console.log(error)
     }
+
   }
 
   //控制显示用户信息
@@ -93,16 +91,14 @@ const User = ({navigation}) => {
               <Image alt='TU'style={{borderRadius:50,width:screenWidth*0.2,height:screenWidth*0.2}} source={require('./images/heard.jpg')} ></Image>
             </Avatar>
           <View onPress={jumpLogin} style={{alignItems:'flex-start'}}>
-            <Text style={{fontSize:screenWidth*0.07,color:"#6C6C6C",marginTop:15}}>{JSON.parse(user).name}</Text>
-            <Text style={{fontSize:screenWidth*0.07,color:"#6C6C6C",marginTop:5}}>{JSON.parse(user).phone}</Text>
+            <Text style={{fontSize:screenWidth*0.065,color:"#6C6C6C"}}>{JSON.parse(user).name}</Text>
+            <Text style={{fontSize:screenWidth*0.065,color:"#6C6C6C",marginTop:5}}>{JSON.parse(user).phone}</Text>
           </View>
         </HStack>
       )
 
     }
-
   }
-
 
   return(
     <View style = {styles.background}>
@@ -154,8 +150,6 @@ const User = ({navigation}) => {
           </HStack>     
         </TouchableOpacity>
       </View>
-
-
     </View>
   ) 
   
@@ -166,8 +160,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#ffffff",
     width:"100%",
     height:screenHeight*0.2,
-    // marginTop:'5%',
-    // borderRadius:20,
     justifyContent: 'center',
   },
   background:{
@@ -194,5 +186,4 @@ const styles = StyleSheet.create({
     width:screenWidth*0.73,
     marginLeft:10
   }
-  
 })

@@ -20,13 +20,17 @@ import CircleProgressView from '../../utils/CircleProgressView';
 
 const Report = ({navigation}) => {
   React.useEffect(() => {
-    WeChat.registerApp('wx99653092cabe7bf8', '').then(res => {
+    WeChat.registerApp('wx5a01a8ac8e18289c', '').then(res => {
       console.log("是否已经注册微信：" + res)
     })
   },[]);
 
   function wx(){
-    WeChat.openWXApp();
+    WeChat.shareText({
+      text: 'Text content.',
+      scene: 0,
+    });
+    // WeChat.openWXApp();
   }
   function download(){
     Linking.openURL('http://192.168.10.186:8080/test.pdf')
