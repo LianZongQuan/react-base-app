@@ -58,3 +58,16 @@
   }
   return false
 }
+/**
+* 校验是否为数字
+**/
+export function isIntNum(val){
+  var regPos = / ^\d+$/; // 非负整数 
+  var regNeg = /^\-[1-9][0-9]*$/; // 负整数
+  if(regPos.test(val) && regNeg.test(val)){
+      return true;
+  }else{
+      return false;
+  } 
+}
+// !isNaN(parseFloat(value)) && isFinite(value);

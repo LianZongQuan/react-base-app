@@ -224,25 +224,36 @@ const Optional = ({navigation}) => {
     setSelectedIndex(3);
   }
   function search(text){
-
-
     setInputText(text)
     // let list = TestData.testdata.optionData;
     let list = selectedIndex == 0 ? TestData.testdata.optionData : TestData.testdata.optionData1;
     if(text===''){
       setListData(list);
     }else{
-      let ret =  fuzzyQuery(list,text);
+      let isNumber = !isNaN(parseFloat(text)) && isFinite(text);
+
+
+      let ret =  isNumber == true ? QueryCode(list,text):QueryName(list,text)
       if(ret != null){
         setListData(ret);
       }
     }
   }
-  function fuzzyQuery(list, keyWord) {
+  function QueryName(list, keyWord) {
     var reg =  new RegExp(keyWord);
     var arr = [];
     for (var i = 0; i < list.length; i++) {
       if (reg.test(list[i].name)) {
+        arr.push(list[i]);
+      }
+    }
+    return arr;
+  }
+  function QueryCode(list, keyWord) {
+    var reg =  new RegExp(keyWord);
+    var arr = [];
+    for (var i = 0; i < list.length; i++) {
+      if (reg.test(list[i].code)) {
         arr.push(list[i]);
       }
     }
@@ -264,8 +275,8 @@ const Optional = ({navigation}) => {
           </Modal.Body>
         </Modal.Content>
       </Modal>
-      <Text style={{marginLeft:20, marginTop:10, fontSize:screenWidth*0.06,alignSelf:'flex-start'}}>自选</Text>
-      <Input value={inputText} onChangeText={(text)=>search(text)} placeholder="检索"height={screenHeight*0.07} bg={"#ffffff"} width={screenWidth*0.9} borderRadius="24" mt={'3'} py="3" px="1" fontSize={screenWidth*0.04} 
+      {/* <Text style={{marginLeft:20, marginTop:10, fontSize:screenWidth*0.06,alignSelf:'flex-start'}}>自选</Text> */}
+      <Input value={inputText} onChangeText={(text)=>search(text)} placeholder="检索"height={screenHeight*0.07} bg={"#ffffff"} width={screenWidth*0.9} borderRadius="24" mt={screenHeight*0.03} py="3" px="1" fontSize={screenWidth*0.04} 
         InputLeftElement={<Icon m="2" ml="3" size={screenWidth*0.07} color="gray.400" as={<MaterialIcons name="search" />} />}>
       </Input>
       <View style={styles.segmentContainer}>
@@ -288,7 +299,7 @@ const Optional = ({navigation}) => {
         </Flex>
 
       </View>
-      <HStack style={{width:'100%',marginTop:1,height:screenHeight*0.65,alignItems:'center', backgroundColor:'#ffffff'}}>
+      <HStack style={{width:'100%',marginTop:1,height:screenHeight*0.7,alignItems:'center', backgroundColor:'#ffffff'}}>
         <FlatList
           ListHeaderComponent={head}
           ListFooterComponent={footer}

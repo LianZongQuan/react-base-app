@@ -101,17 +101,30 @@ const AddOptional = ({navigation}) => {
     if(text===''){
       setListData(list);
     }else{
-      let ret =  fuzzyQuery(list,text);
+      let isNumber = !isNaN(parseFloat(text)) && isFinite(text);
+
+      let ret =  isNumber == true ? QueryCode(list,text):QueryName(list,text)
       if(ret != null){
         setListData(ret);
       }
     }
   }
-  function fuzzyQuery(list, keyWord) {
+
+  function QueryName(list, keyWord) {
     var reg =  new RegExp(keyWord);
     var arr = [];
     for (var i = 0; i < list.length; i++) {
       if (reg.test(list[i].name)) {
+        arr.push(list[i]);
+      }
+    }
+    return arr;
+  }
+  function QueryCode(list, keyWord) {
+    var reg =  new RegExp(keyWord);
+    var arr = [];
+    for (var i = 0; i < list.length; i++) {
+      if (reg.test(list[i].code)) {
         arr.push(list[i]);
       }
     }
@@ -133,8 +146,7 @@ const AddOptional = ({navigation}) => {
 
         {noSearch()}
     </View>
-  ) 
-  
+  )  
 }
 export default AddOptional;
 const styles = StyleSheet.create({

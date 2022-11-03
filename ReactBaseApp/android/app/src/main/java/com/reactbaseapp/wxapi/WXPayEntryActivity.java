@@ -1,4 +1,4 @@
-package com.ocr_app.wxapi;
+package com.reactbaseapp.wxapi;
 
 import android.app.Activity;
 import android.os.Bundle;
