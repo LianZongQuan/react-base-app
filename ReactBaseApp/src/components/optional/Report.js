@@ -39,7 +39,7 @@ function loginwx(){
 
 WeChat.isWXAppInstalled().then((isInstalled)=>{
   console.warn('isInstalled==',isInstalled)
-  WeChatLogin('wx5a01a8ac8e18289c','',(userInfo)=>{
+  WeChatLogin('wx5a01a8ac8e18289c','6c4d8f624c96c704d16a4c49edef0977',(userInfo)=>{
       console.log('授权成功',userInfo)
   },(err)=>{
       console.log('授权失败',err)
