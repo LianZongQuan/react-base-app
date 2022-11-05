@@ -68,7 +68,6 @@ const User = ({navigation}) => {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   //控制显示用户信息

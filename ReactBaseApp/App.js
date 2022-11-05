@@ -34,12 +34,16 @@ import FeedBack from './src/components/user/FeedBack'
 
 import Test from './src/utils/Test'
 
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
 
 function App() {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
+  isLogin = true;
+
   return (
     <Provider store={store} >
       <NativeBaseProvider >

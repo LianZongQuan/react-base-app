@@ -18,6 +18,7 @@ import WebView from "react-native-webview";
 import CircleProgressView from '../../utils/CircleProgressView';
 import HttpUtil from '../../utils/http';
 import TestData from './TestData.json'
+import TestData1 from './TestData1.json'
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -30,6 +31,8 @@ const Optional = ({navigation}) => {
   const [listData,setListData] = useState(TestData.testdata.optionData);
   //搜索内容
   const [inputText,setInputText] = useState('');
+  //用户数据
+  const [user, setuser] = React.useState(null);
 
   // //自选列表名称
   // const [listNameData,setListNameData] = useState(null);
@@ -38,15 +41,30 @@ const Optional = ({navigation}) => {
   //指向的报告列表组件
   let _titleList = null;
 
-
+    const focus=navigation.addListener('focus',()=>{
+      getUser();
+    })
   React.useEffect(() => {
     setSelectedIndex(0);
     setInputText('');
-    setListData(TestData.testdata.optionData);
+    // getUser();
+console.log("2")
+    user == null ? setListData(TestData1.testdata.optionData) : setListData(TestData.testdata.optionData);
+    // setListData(TestData.testdata.optionData);
     // setListNameData(TestData.testdata.optionData);
-    setListReportName(TestData.testdata.optionData[0].report);
-  },[]);
+    user == null ? setListReportName(TestData1.testdata.optionData[0].report) : setListReportName(TestData.testdata.optionData[0].report);
+    // setListReportName(TestData.testdata.optionData[0].report);
+  },[focus]);
 
+  async function getUser(){
+    try {
+
+      let user_info = await AsyncStorage.getItem('user_info');
+      setuser(user_info)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   //按压测试
   function onPressTest(){
     setModalVisible(!modalVisible);
